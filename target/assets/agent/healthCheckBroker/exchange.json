@@ -1,0 +1,17 @@
+{
+  "assetId": "healthCheckBroker",
+  "groupId": "7741a7b6-9fb1-4b4d-88da-62a1ae33d537",
+  "version": "1.0.0",
+  "name": "Health Check Broker",
+  "tags": [
+    "broker"
+  ],
+  "metadata": {
+    "properties": {
+      "protocol": "a2a",
+      "platform": "mulesoft",
+      "kind": "broker",
+      "source": "urn:gav:7741a7b6-9fb1-4b4d-88da-62a1ae33d537:mcp-a2a-fabric1:1.0.0"
+    }
+  }
+}

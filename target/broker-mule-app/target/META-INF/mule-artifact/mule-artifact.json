@@ -1,0 +1,26 @@
+{
+  "configs": [
+    "mule-agent.xml"
+  ],
+  "secureProperties": [],
+  "supportedJavaVersions": [],
+  "redeploymentEnabled": true,
+  "name": "7741a7b6-9fb1-4b4d-88da-62a1ae33d537:mcp-a2a-fabric1:1.0.0",
+  "minMuleVersion": "4.9.7",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "config.yaml",
+        "log4j2.xml",
+        "mule-agent.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

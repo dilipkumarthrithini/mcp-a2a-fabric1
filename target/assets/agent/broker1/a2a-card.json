@@ -1,0 +1,34 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Broker 1",
+  "description": "Provide a description for your broker, such as \"This broker provides all capabilities...\".",
+  "url": "${ingressgw.url}/broker1",
+  "capabilities": {
+    "pushNotifications": true
+  },
+  "version": "1.0.0",
+  "securitySchemes": {},
+  "defaultInputModes": [
+    "Provide one or more media types, such as \"application/json\" or \"text/plain\"."
+  ],
+  "defaultOutputModes": [
+    "Provide one or more media types, such as \"application/json\" or \"text/plain\"."
+  ],
+  "skills": [
+    {
+      "id": "Provide an id for a skill. For example, \"weather\".",
+      "name": "Provide a name for a skill. For example, \"Returns the weather for a given location\".",
+      "description": "Provide a description for this skill. For example, \"Get the weather conditions for a specified location\".",
+      "examples": [
+        "Provide an example for what this skill can be leveraged to do. For example \"What is the weather like in New York\"."
+      ],
+      "inputModes": [
+        "Provide one or more media types, such as \"application/json\" or \"text/plain\"."
+      ],
+      "outputModes": [
+        "Provide one or more media types, such as \"application/json\" or \"text/plain\"."
+      ],
+      "tags": []
+    }
+  ]
+}

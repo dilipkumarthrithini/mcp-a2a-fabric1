@@ -1,0 +1,15 @@
+{
+  "assetId": "mcpServer1",
+  "groupId": "7741a7b6-9fb1-4b4d-88da-62a1ae33d537",
+  "version": "1.0.0",
+  "description": "",
+  "tags": [],
+  "name": "MCP Server 1",
+  "metadata": {
+    "properties": {
+      "transport": "streamablehttp",
+      "platform": "other",
+      "source": "urn:gav:7741a7b6-9fb1-4b4d-88da-62a1ae33d537:mcp-a2a-fabric1:1.0.0"
+    }
+  }
+}

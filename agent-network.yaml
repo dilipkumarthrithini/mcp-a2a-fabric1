@@ -1,0 +1,148 @@
+schemaVersion: 1.0.0
+label: Agent Network 1
+brokers:
+    broker1:
+        card:
+            protocolVersion: 0.3.0
+            name: Broker 1
+            description: Provide a description for your broker, such as "This broker provides all capabilities...".
+            url: ${ingressgw.url}/broker1
+            capabilities:
+                pushNotifications: true
+            version: 1.0.0
+            securitySchemes: {}
+            defaultInputModes:
+                - Provide one or more media types, such as "application/json" or "text/plain".
+            defaultOutputModes:
+                - Provide one or more media types, such as "application/json" or "text/plain".
+            skills:
+                - id: Provide an id for a skill. For example, "weather".
+                  name: Provide a name for a skill. For example, "Returns the weather for a given location".
+                  description: Provide a description for this skill. For example, "Get the weather conditions for a specified location".
+                  examples:
+                      - Provide an example for what this skill can be leveraged to do. For example "What is the weather like in New York".
+                  inputModes:
+                      - Provide one or more media types, such as "application/json" or "text/plain".
+                  outputModes:
+                      - Provide one or more media types, such as "application/json" or "text/plain".
+                  tags: []
+        spec:
+            llm:
+                ref:
+                    name: open-ai
+                configuration:
+                    model: gpt-5-mini
+            instructions:
+                - Instructions
+            links:
+                - agent:
+                      ref:
+                          name: agent1
+            tools:
+                - mcp:
+                      ref:
+                          name: mcpServer1
+    healthCheckBroker:
+        card:
+            protocolVersion: 0.3.0
+            name: Health Check Broker
+            description: This broker provides health monitoring and system status capabilities for the agent network.
+            url: ${ingressgw.url}/healthcheck
+            capabilities:
+                pushNotifications: true
+            version: 1.0.0
+            securitySchemes: {}
+            defaultInputModes:
+                - application/json
+                - text/plain
+            defaultOutputModes:
+                - application/json
+                - text/plain
+            skills:
+                - id: system-health
+                  name: System Health Check
+                  description: Monitor and report the health status of system components, services, and network connectivity.
+                  examples:
+                      - Check if all services are running properly
+                      - Monitor system resource usage and performance
+                      - Verify network connectivity between components
+                  inputModes:
+                      - application/json
+                      - text/plain
+                  outputModes:
+                      - application/json
+                      - text/plain
+                  tags: [monitoring, health, diagnostics]
+                - id: service-status
+                  name: Service Status Monitor
+                  description: Check the operational status of individual services and dependencies.
+                  examples:
+                      - Get status of database connections
+                      - Check API endpoint availability
+                      - Monitor service response times
+                  inputModes:
+                      - application/json
+                      - text/plain
+                  outputModes:
+                      - application/json
+                      - text/plain
+                  tags: [status, monitoring, services]
+        spec:
+            llm:
+                ref:
+                    name: open-ai
+                configuration:
+                    model: gpt-5
+            instructions:
+                - Monitor system health and provide status reports
+                - Perform diagnostic checks on network components
+                - Alert on service failures or performance issues
+            links:
+                - agent:
+                      ref:
+                          name: agent1
+            tools:
+                - mcp:
+                      ref:
+                          name: mcpServer1
+agents:
+    agent1:
+        label: Agent 1
+        metadata:
+            protocol: a2a
+            platform: Bedrock
+mcpServers:
+    mcpServer1:
+        label: MCP Server 1
+        metadata:
+            transport:
+                kind: streamableHttp
+                path: /mcp
+llmProviders:
+    open-ai:
+        label: OpenAI
+        description: OpenAI LLM Provider
+        metadata:
+            platform: OpenAI
+connections:
+    agent1Connection:
+        kind: agent
+        ref:
+            name: agent1
+        spec:
+            url: ${agent1.cardUrl}
+    mcpServer1Connection:
+        kind: mcp
+        ref:
+            name: mcpServer1
+        spec:
+            url: ${mcpServer1.url}
+    my-open-ai-connection:
+        kind: llm
+        ref:
+            name: open-ai
+        spec:
+            url: http://api.openai.com/v1/
+            configuration:
+                apiKey: ${openai.apiKey}
+                timeout: 600000

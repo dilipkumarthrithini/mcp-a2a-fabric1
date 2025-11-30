@@ -1,0 +1,67 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Health Check Broker",
+  "description": "This broker provides health monitoring and system status capabilities for the agent network.",
+  "url": "${ingressgw.url}/healthcheck",
+  "capabilities": {
+    "pushNotifications": true
+  },
+  "version": "1.0.0",
+  "securitySchemes": {},
+  "defaultInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "system-health",
+      "name": "System Health Check",
+      "description": "Monitor and report the health status of system components, services, and network connectivity.",
+      "examples": [
+        "Check if all services are running properly",
+        "Monitor system resource usage and performance",
+        "Verify network connectivity between components"
+      ],
+      "inputModes": [
+        "application/json",
+        "text/plain"
+      ],
+      "outputModes": [
+        "application/json",
+        "text/plain"
+      ],
+      "tags": [
+        "monitoring",
+        "health",
+        "diagnostics"
+      ]
+    },
+    {
+      "id": "service-status",
+      "name": "Service Status Monitor",
+      "description": "Check the operational status of individual services and dependencies.",
+      "examples": [
+        "Get status of database connections",
+        "Check API endpoint availability",
+        "Monitor service response times"
+      ],
+      "inputModes": [
+        "application/json",
+        "text/plain"
+      ],
+      "outputModes": [
+        "application/json",
+        "text/plain"
+      ],
+      "tags": [
+        "status",
+        "monitoring",
+        "services"
+      ]
+    }
+  ]
+}

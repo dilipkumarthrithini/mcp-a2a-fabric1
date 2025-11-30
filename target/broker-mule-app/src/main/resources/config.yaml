@@ -1,0 +1,10 @@
+agentregistry:
+  url: http://localhost:8081
+http:
+  port: "8081"
+agent1:
+  cardUrl: ""
+mcpServer1:
+  url: ""
+openai:
+  apiKey: ""

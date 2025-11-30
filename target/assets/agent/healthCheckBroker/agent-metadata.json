@@ -1,0 +1,32 @@
+{
+  "protocol": "a2a",
+  "platform": "mulesoft",
+  "kind": "broker",
+  "description": "This broker provides health monitoring and system status capabilities for the agent network.",
+  "connections": [
+    {
+      "kind": "agent",
+      "ref": {
+        "groupId": "7741a7b6-9fb1-4b4d-88da-62a1ae33d537",
+        "assetId": "agent1",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "kind": "mcp",
+      "ref": {
+        "groupId": "7741a7b6-9fb1-4b4d-88da-62a1ae33d537",
+        "assetId": "mcpServer1",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "kind": "llm",
+      "ref": {
+        "groupId": "7741a7b6-9fb1-4b4d-88da-62a1ae33d537",
+        "assetId": "open-ai",
+        "version": "1.0.0"
+      }
+    }
+  ]
+}

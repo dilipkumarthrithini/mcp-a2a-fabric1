@@ -1,0 +1,11 @@
+{
+  "assetId": "mcp-a2a-fabric1-mule-application",
+  "groupId": "7741a7b6-9fb1-4b4d-88da-62a1ae33d537",
+  "version": "1.0.0",
+  "main": "mule-application.jar",
+  "description": "",
+  "tags": [],
+  "name": "mcp-a2a-fabric1",
+  "metadata": {},
+  "dependencies": []
+}

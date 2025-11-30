@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:a2a="http://www.mulesoft.org/schema/mule/a2a" xmlns:ms_einstein_ai="http://www.mulesoft.org/schema/mule/ms-einstein-ai" xmlns:mcp="http://www.mulesoft.org/schema/mule/mcp" xmlns:agents_broker="http://www.mulesoft.org/schema/mule/agents-broker" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd&#xa;http://www.mulesoft.org/schema/mule/a2a http://www.mulesoft.org/schema/mule/a2a/current/mule-a2a.xsd&#xa;http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd&#xa;http://www.mulesoft.org/schema/mule/ms-einstein-ai http://www.mulesoft.org/schema/mule/ms-einstein-ai/current/mule-ms-einstein-ai.xsd&#xa;http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd&#xa;http://www.mulesoft.org/schema/mule/agents-broker http://www.mulesoft.org/schema/mule/agents-broker/current/mule-agents-broker.xsd&#xa;http://www.mulesoft.org/schema/mule/mcp http://www.mulesoft.org/schema/mule/mcp/current/mule-mcp.xsd&#xa;http://www.mulesoft.org/schema/mule/oauth http://www.mulesoft.org/schema/mule/oauth/current/mule-oauth.xsd">
+  <configuration-properties file="config.yaml"/>
+  <http:listener-config name="http-listener-config">
+    <http:listener-connection host="0.0.0.0" port="${http.port}" readTimeout="60000"/>
+  </http:listener-config>
+  <a2a:server-config name="broker1-a2a-listener-config">
+    <a2a:connection listenerConfig="http-listener-config" agentPath="/broker1"/>
+    <a2a:card name="Broker 1" url="http://localhost:8081/broker1" version="1.0.0" protocolVersion="0.3.0">
+      <a2a:description><![CDATA[Provide a description for your broker, such as "This broker provides all capabilities...".]]></a2a:description>
+      <a2a:skills>
+        <a2a:agent-skill id="Provide an id for a skill. For example, &quot;weather&quot;." name="Provide a name for a skill. For example, &quot;Returns the weather for a given location&quot;.">
+          <a2a:description><![CDATA[Provide a description for this skill. For example, "Get the weather conditions for a specified location".]]></a2a:description>
+          <a2a:examples>
+            <a2a:example value="Provide an example for what this skill can be leveraged to do. For example &quot;What is the weather like in New York&quot;."/>
+          </a2a:examples>
+          <a2a:input-modes>
+            <a2a:input-mode value="Provide one or more media types, such as &quot;application/json&quot; or &quot;text/plain&quot;."/>
+          </a2a:input-modes>
+          <a2a:output-modes>
+            <a2a:output-mode value="Provide one or more media types, such as &quot;application/json&quot; or &quot;text/plain&quot;."/>
+          </a2a:output-modes>
+        </a2a:agent-skill>
+      </a2a:skills>
+      <a2a:capabilities streaming="false" stateTransitionHistory="false" pushNotifications="true"/>
+      <a2a:provider organization="null" url="null"/>
+      <a2a:default-input-modes>
+        <a2a:default-input-mode value="Provide one or more media types, such as &quot;application/json&quot; or &quot;text/plain&quot;."/>
+      </a2a:default-input-modes>
+      <a2a:default-output-modes>
+        <a2a:default-output-mode value="Provide one or more media types, such as &quot;application/json&quot; or &quot;text/plain&quot;."/>
+      </a2a:default-output-modes>
+      <a2a:security-schemes/>
+    </a2a:card>
+  </a2a:server-config>
+  <a2a:server-config name="healthCheckBroker-a2a-listener-config">
+    <a2a:connection listenerConfig="http-listener-config" agentPath="/healthCheckBroker"/>
+    <a2a:card name="Health Check Broker" url="http://localhost:8081/healthCheckBroker" version="1.0.0" protocolVersion="0.3.0">
+      <a2a:description><![CDATA[This broker provides health monitoring and system status capabilities for the agent network.]]></a2a:description>
+      <a2a:skills>
+        <a2a:agent-skill id="system-health" name="System Health Check">
+          <a2a:description><![CDATA[Monitor and report the health status of system components, services, and network connectivity.]]></a2a:description>
+          <a2a:tags>
+            <a2a:tag value="monitoring"/>
+            <a2a:tag value="health"/>
+            <a2a:tag value="diagnostics"/>
+          </a2a:tags>
+          <a2a:examples>
+            <a2a:example value="Check if all services are running properly"/>
+            <a2a:example value="Monitor system resource usage and performance"/>
+            <a2a:example value="Verify network connectivity between components"/>
+          </a2a:examples>
+          <a2a:input-modes>
+            <a2a:input-mode value="application/json"/>
+            <a2a:input-mode value="text/plain"/>
+          </a2a:input-modes>
+          <a2a:output-modes>
+            <a2a:output-mode value="application/json"/>
+            <a2a:output-mode value="text/plain"/>
+          </a2a:output-modes>
+        </a2a:agent-skill>
+        <a2a:agent-skill id="service-status" name="Service Status Monitor">
+          <a2a:description><![CDATA[Check the operational status of individual services and dependencies.]]></a2a:description>
+          <a2a:tags>
+            <a2a:tag value="status"/>
+            <a2a:tag value="monitoring"/>
+            <a2a:tag value="services"/>
+          </a2a:tags>
+          <a2a:examples>
+            <a2a:example value="Get status of database connections"/>
+            <a2a:example value="Check API endpoint availability"/>
+            <a2a:example value="Monitor service response times"/>
+          </a2a:examples>
+          <a2a:input-modes>
+            <a2a:input-mode value="application/json"/>
+            <a2a:input-mode value="text/plain"/>
+          </a2a:input-modes>
+          <a2a:output-modes>
+            <a2a:output-mode value="application/json"/>
+            <a2a:output-mode value="text/plain"/>
+          </a2a:output-modes>
+        </a2a:agent-skill>
+      </a2a:skills>
+      <a2a:capabilities streaming="false" stateTransitionHistory="false" pushNotifications="true"/>
+      <a2a:provider organization="null" url="null"/>
+      <a2a:default-input-modes>
+        <a2a:default-input-mode value="application/json"/>
+        <a2a:default-input-mode value="text/plain"/>
+      </a2a:default-input-modes>
+      <a2a:default-output-modes>
+        <a2a:default-output-mode value="application/json"/>
+        <a2a:default-output-mode value="text/plain"/>
+      </a2a:default-output-modes>
+      <a2a:security-schemes/>
+    </a2a:card>
+  </a2a:server-config>
+  <agents_broker:config name="Broker_1">
+    <agents_broker:openai-connection modelName="gpt-5-mini" apiKey="-" url="${egressgw.url}/7741a7b6-9fb1-4b4d-88da-62a1ae33d537/open-ai/${connections.open-ai.default}"/>
+  </agents_broker:config>
+  <agents_broker:config name="Health_Check_Broker">
+    <agents_broker:openai-connection modelName="gpt-5" apiKey="-" url="${egressgw.url}/7741a7b6-9fb1-4b4d-88da-62a1ae33d537/open-ai/${connections.open-ai.default}"/>
+  </agents_broker:config>
+  <a2a:client-config name="broker1-agent1-a2a-client-config">
+    <a2a:client-connection serverUrl="${egressgw.url}/7741a7b6-9fb1-4b4d-88da-62a1ae33d537/agent1/${connections.agent1.default}" requestTimeout="60"/>
+  </a2a:client-config>
+  <a2a:client-config name="healthCheckBroker-agent1-a2a-client-config">
+    <a2a:client-connection serverUrl="${egressgw.url}/7741a7b6-9fb1-4b4d-88da-62a1ae33d537/agent1/${connections.agent1.default}" requestTimeout="60"/>
+  </a2a:client-config>
+  <mcp:client-config name="broker1-mcpServer1-mcp-client-config" clientName="mcpServer1" clientVersion="1.0.0">
+    <mcp:streamable-http-client-connection serverUrl="${egressgw.url}/7741a7b6-9fb1-4b4d-88da-62a1ae33d537/mcpServer1/${connections.mcpServer1.default}" requestTimeout="60"/>
+  </mcp:client-config>
+  <mcp:client-config name="healthCheckBroker-mcpServer1-mcp-client-config" clientName="mcpServer1" clientVersion="1.0.0">
+    <mcp:streamable-http-client-connection serverUrl="${egressgw.url}/7741a7b6-9fb1-4b4d-88da-62a1ae33d537/mcpServer1/${connections.mcpServer1.default}" requestTimeout="60"/>
+  </mcp:client-config>
+  <flow name="broker1-flow">
+    <a2a:task-listener config-ref="broker1-a2a-listener-config"/>
+    <agents_broker:agent-loop taskId="#[attributes.taskId]" contextId="#[attributes.contextId]" apiInstanceId="#[attributes.headers.'x-anypoint-api-instance-id']" config-ref="Broker_1">
+      <agents_broker:instructions><![CDATA[Instructions]]></agents_broker:instructions>
+      <agents_broker:mcp-servers>
+        <agents_broker:mcp-server mcpClientConfigRef="broker1-mcpServer1-mcp-client-config"/>
+      </agents_broker:mcp-servers>
+      <agents_broker:a2a-clients>
+        <agents_broker:a2a-client a2aClientConfigRef="broker1-agent1-a2a-client-config"/>
+      </agents_broker:a2a-clients>
+    </agents_broker:agent-loop>
+  </flow>
+  <flow name="healthCheckBroker-flow">
+    <a2a:task-listener config-ref="healthCheckBroker-a2a-listener-config"/>
+    <agents_broker:agent-loop taskId="#[attributes.taskId]" contextId="#[attributes.contextId]" apiInstanceId="#[attributes.headers.'x-anypoint-api-instance-id']" config-ref="Health_Check_Broker">
+      <agents_broker:instructions><![CDATA[Monitor system health and provide status reports
+Perform diagnostic checks on network components
+Alert on service failures or performance issues]]></agents_broker:instructions>
+      <agents_broker:mcp-servers>
+        <agents_broker:mcp-server mcpClientConfigRef="healthCheckBroker-mcpServer1-mcp-client-config"/>
+      </agents_broker:mcp-servers>
+      <agents_broker:a2a-clients>
+        <agents_broker:a2a-client a2aClientConfigRef="healthCheckBroker-agent1-a2a-client-config"/>
+      </agents_broker:a2a-clients>
+    </agents_broker:agent-loop>
+  </flow>
+</mule>
