@@ -1,0 +1,36 @@
+{
+  "main": "agent-network.yaml",
+  "name": "mcp-a2a-fabric",
+  "classifier": "agent-network",
+  "organizationId": "3dae78d6-1a11-4b7c-b250-88171bf64e16",
+  "descriptorVersion": "1.0.0",
+  "tags": [],
+  "groupId": "3dae78d6-1a11-4b7c-b250-88171bf64e16",
+  "assetId": "mcp-a2a-fabric",
+  "version": "1.0.0",
+  "dependencies": [],
+  "metadata": {
+    "variables": {
+      "agent1": {
+        "cardUrl": {
+          "description": "Agent 1 Card URL",
+          "default": "",
+          "secret": false
+        }
+      },
+      "mcpServer1": {
+        "url": {
+          "description": "MCP Server 1 URL",
+          "default": "",
+          "secret": false
+        }
+      },
+      "openai": {
+        "apiKey": {
+          "description": "OpenAI API key",
+          "default": ""
+        }
+      }
+    }
+  }
+}
