@@ -1,5 +1,5 @@
 schemaVersion: 1.0.0
-label: Agent Network 1
+label: Agent Network 1 
 brokers:
     broker1:
         card:
